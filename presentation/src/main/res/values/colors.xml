@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="backgroundRed">#BB292A</color>
+    <color name="backgroundButtonGame">#414848</color>
+    <color name="backgroundButtonGameDark">#1E1E1E</color>
+</resources>
