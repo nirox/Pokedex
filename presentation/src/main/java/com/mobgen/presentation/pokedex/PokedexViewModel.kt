@@ -35,6 +35,7 @@ class PokedexViewModel(private val getPokemons: GetPokemons, private val pokemon
                     })
                 },
                 onError = {
+                    throw it
                     data.postValue(pokedexViewData.apply {
                         status = Status.ERROR
                     })

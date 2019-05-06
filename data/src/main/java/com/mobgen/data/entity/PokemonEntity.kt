@@ -1,3 +1,6 @@
 package com.mobgen.data.entity
 
-class PokemonEntity{}
+data class PokemonEntity(
+    val url: String,
+    val name: String
+)
