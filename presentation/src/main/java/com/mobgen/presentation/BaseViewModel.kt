@@ -20,7 +20,6 @@ open class BaseViewModel<T : BaseViewModel.Data> : ViewModel() {
 
     enum class Status {
         LOADING,
-        LOADING_NEXT_PAGE,
         SUCCESS,
         ERROR
     }

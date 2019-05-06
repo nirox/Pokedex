@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gamebackground"
+        tools:context=".game.GameActivity">
+
+    <Button
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/backButton"
+            android:background="@drawable/ic_back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="14dp"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+            android:text="Pokemon 1"
+            android:padding="15dp"
+            android:id="@+id/pokemon1"
+            android:maxLines="1"
+            android:layout_width="0dp"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/minecraft"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_round"
+            android:textAllCaps="false"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pokemon2"
+            app:layout_constraintTop_toTopOf="@+id/pokemon2"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/pokemon2"/>
+
+    <Button
+            android:text="Pokemon 2"
+            android:id="@+id/pokemon2"
+            android:maxLines="1"
+            android:padding="15dp"
+            android:layout_width="0dp"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/minecraft"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:background="@drawable/button_round"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/pokemon3"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toEndOf="@+id/pokemon1"
+            android:layout_marginStart="20dp"/>
+    <Button
+            android:text="Pokemon 3"
+            android:padding="15dp"
+            android:id="@+id/pokemon3"
+            android:maxLines="1"
+            android:textSize="24sp"
+            android:layout_width="0dp"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/minecraft"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_round"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="10dp"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toTopOf="@+id/pokemon4"
+            app:layout_constraintBottom_toBottomOf="@+id/pokemon4"
+            app:layout_constraintEnd_toStartOf="@+id/pokemon4"/>
+    <Button
+            android:text="Pokemon 4"
+            android:id="@+id/pokemon4"
+            android:layout_width="0dp"
+            android:maxLines="1"
+            android:textColor="@android:color/white"
+            android:padding="15dp"
+            android:textSize="24sp"
+            android:fontFamily="@font/minecraft"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_round"
+            android:layout_marginBottom="120dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintStart_toEndOf="@+id/pokemon3"
+            android:layout_marginStart="20dp"
+    />
+    <ImageView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pokemon"
+            android:id="@+id/pokemonImage"
+            android:adjustViewBounds="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="30dp"/>
+
+    <ImageView
+            android:id="@+id/load"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/pokeball_gif"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

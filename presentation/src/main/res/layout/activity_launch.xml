@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/pokedexbackground"
+        tools:context=".launch.LaunchActivity">
+
+
+    <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/ic_pokeball"
+            android:id="@+id/pokedexButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/pokedexText"
+            app:layout_constraintVertical_chainStyle="packed" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+    />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/minecraft"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pokedexButton"
+            android:text="@string/pokedex"
+            android:id="@+id/pokedexText"
+            app:layout_constraintBottom_toTopOf="@+id/gameButton"
+            android:layout_marginTop="8dp"
+    />
+    <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/ic_superball"
+            android:id="@+id/gameButton"
+            app:layout_constraintTop_toBottomOf="@+id/pokedexText"
+            app:layout_constraintBottom_toTopOf="@+id/gameText" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginTop="32dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/minecraft"
+            android:textColor="@android:color/white"
+            android:text="@string/game"
+            android:textSize="24sp"
+            android:id="@+id/gameText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gameButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"/>
+</android.support.constraint.ConstraintLayout>
+
