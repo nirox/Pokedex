@@ -9,6 +9,6 @@ import dagger.Module
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun provideTwitteRepository(twitterRepositoryImpl: PokemonRepositoryImpl): PokemonRepository
+    abstract fun providePokemonRepository(pokemonRepositoryImpl: PokemonRepositoryImpl): PokemonRepository
 
 }

@@ -4,6 +4,7 @@ import PokemonApiConstants
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.mobgen.data.repository.service.PokemonService
+import com.mobgen.data.repository.service.SpeciesService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -58,4 +59,8 @@ class ServicesModule {
         return retrofit.create(PokemonService::class.java)
     }
 
+    @Provides
+    fun provideSpeciesService(retrofit: Retrofit): SpeciesService {
+        return retrofit.create(SpeciesService::class.java)
+    }
 }
