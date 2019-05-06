@@ -7,8 +7,8 @@ import javax.inject.Inject
 
 class PokemonDataMapper @Inject constructor() : DataMapper<PokemonEntity, Pokemon> {
     override fun map(value: PokemonEntity): Pokemon {
-        val id = Util.getId(value.url)
-        return Pokemon(id.toLong(), value.name, String.format(PokemonApiConstants.IMAGE_URL, id))
+        val id = Util.getId(value.url).toLong()
+        return Pokemon(id, value.name, String.format(PokemonApiConstants.IMAGE_URL, id))
     }
 
 }
