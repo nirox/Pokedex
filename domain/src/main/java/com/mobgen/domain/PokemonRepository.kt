@@ -8,5 +8,5 @@ interface PokemonRepository {
     fun getPokemons(): Single<List<Pokemon>>
     fun getNextPokemons(offset: Long): Single<List<Pokemon>>
     fun getPokemonDetails(id: String): Single<PokemonDetails>
-    fun getRandomPokemons(number: Int): Single<List<Pokemon>>
+    fun getRandomPokemons(number: Int, noPosibleIds: List<Long>): Single<List<Pokemon>>
 }

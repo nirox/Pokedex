@@ -4,9 +4,11 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.mobgen.domain.useCase.GetPokemonDetails
 import com.mobgen.domain.useCase.GetPokemons
+import com.mobgen.domain.useCase.GetRandomPokemons
 import com.mobgen.presentation.game.GameViewModel
 import com.mobgen.presentation.pokedex.PokedexViewModel
 import com.mobgen.presentation.pokedex.PokemonBindViewMapper
+import com.mobgen.presentation.game.PokemonRandomViewMapper
 import com.mobgen.presentation.pokedex.pokemonDetail.PokemonDetailViewMapper
 import com.mobgen.presentation.pokedex.pokemonDetail.PokemonDetailViewModel
 import javax.inject.Inject
@@ -14,14 +16,19 @@ import javax.inject.Inject
 class ViewModelFactory
 @Inject constructor(
     private val getPokemons: GetPokemons,
+    private val getRandomPokemons: GetRandomPokemons,
     private val pokemonBindViewMapper: PokemonBindViewMapper,
+    private val pokemonRandomMapper: PokemonRandomViewMapper
     private val getPokemonDetails: GetPokemonDetails,
     private val viewMapper: PokemonDetailViewMapper
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return when {
-            modelClass.isAssignableFrom(GameViewModel::class.java) -> GameViewModel()
+            modelClass.isAssignableFrom(GameViewModel::class.java) -> GameViewModel(
+                getRandomPokemons,
+                pokemonRandomMapper
+            )
             modelClass.isAssignableFrom(PokedexViewModel::class.java) -> PokedexViewModel(
                 getPokemons,
                 pokemonBindViewMapper

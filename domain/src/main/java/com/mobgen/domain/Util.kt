@@ -1,12 +1,11 @@
 package com.mobgen.domain
 
-import java.text.SimpleDateFormat
 import java.util.*
 
 class Util {
     companion object {
         private val random = Random()
-        private const val MAX_POKEMON_GAME_ID: Int = 10032
+        private const val MAX_POKEMON_GAME_ID: Int = 807
         fun getDate(date: String, format: String): Date {
             return SimpleDateFormat(format, Locale.ENGLISH).apply { isLenient = true }.parse(date)
 

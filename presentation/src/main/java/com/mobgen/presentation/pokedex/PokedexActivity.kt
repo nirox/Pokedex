@@ -30,7 +30,7 @@ class PokedexActivity : DaggerAppCompatActivity(), PokedexActivityListener {
     private var fragmentOpen = false
 
     companion object {
-        fun newInstance(context: Context) = Intent(context, PokedexActivity::class.java)
+        fun newInstance(context: Context) = Intent(context, PokedexActivity::class.java).apply { addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP) }
         private const val SCROLL_RANGE_TO_NEXT_PAGE = 4
         private const val COLS_NUMBER_GRID = 2
     }

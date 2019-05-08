@@ -4,9 +4,10 @@
     <string name="game">Game</string>
     <string name="title_activity_game">GameActivity</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="description">Description</string>
     <string name="evolutions">Evolutions</string>
     <string name="checkConnection">Error to connect the server, please check your connection</string>
+    <string name="round">/%d rounds</string>
+    <string name="points">%d points</string>
 </resources>
