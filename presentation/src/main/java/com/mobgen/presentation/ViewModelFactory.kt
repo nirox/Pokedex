@@ -2,12 +2,14 @@ package com.mobgen.presentation
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.mobgen.domain.useCase.GetPokemonDetails
 import com.mobgen.domain.useCase.GetPokemons
 import com.mobgen.domain.useCase.GetRandomPokemons
 import com.mobgen.presentation.game.GameViewModel
 import com.mobgen.presentation.pokedex.PokedexViewModel
 import com.mobgen.presentation.pokedex.PokemonBindViewMapper
 import com.mobgen.presentation.game.PokemonRandomViewMapper
+import com.mobgen.presentation.pokedex.pokemonDetail.PokemonDetailViewMapper
 import com.mobgen.presentation.pokedex.pokemonDetail.PokemonDetailViewModel
 import javax.inject.Inject
 
@@ -17,6 +19,8 @@ class ViewModelFactory
     private val getRandomPokemons: GetRandomPokemons,
     private val pokemonBindViewMapper: PokemonBindViewMapper,
     private val pokemonRandomMapper: PokemonRandomViewMapper
+    private val getPokemonDetails: GetPokemonDetails,
+    private val viewMapper: PokemonDetailViewMapper
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -29,7 +33,10 @@ class ViewModelFactory
                 getPokemons,
                 pokemonBindViewMapper
             )
-            modelClass.isAssignableFrom(PokemonDetailViewModel::class.java) -> PokemonDetailViewModel()
+            modelClass.isAssignableFrom(PokemonDetailViewModel::class.java) -> PokemonDetailViewModel(
+                getPokemonDetails,
+                viewMapper
+            )
             else -> throw IllegalArgumentException("Unknown ViewModel class")
         } as T
     }

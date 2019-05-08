@@ -24,6 +24,7 @@ class PokedexViewModel(private val getPokemons: GetPokemons, private val pokemon
     }
 
     private fun getFirstPage() {
+        data.value = pokedexViewData.apply { status = Status.LOADING }
         executeUseCase {
             getPokemons.execute().subscribe(
                 executor = AndroidSchedulers.mainThread(),
@@ -44,8 +45,9 @@ class PokedexViewModel(private val getPokemons: GetPokemons, private val pokemon
     }
 
     private fun getLastPage() {
+        data.value = pokedexViewData.apply { status = Status.LOADING }
         executeUseCase {
-            getPokemons.execute().subscribe(
+            getPokemons.next().subscribe(
                 executor = AndroidSchedulers.mainThread(),
                 onSuccess = {
                     _pokemons.addAll(it.map(pokemonBindViewMapper::map))
