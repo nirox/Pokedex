@@ -1,23 +1,46 @@
 package com.mobgen.presentation.pokedex.pokemonDetail
 
+import com.mobgen.domain.subscribe
+import com.mobgen.domain.useCase.GetPokemonDetails
 import com.mobgen.presentation.BaseViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
 
-class PokemonDetailViewModel : BaseViewModel<PokemonDetailViewModel.PokemonDetailViewData>() {
-
+class PokemonDetailViewModel(
+    private val getPokemonDetails: GetPokemonDetails,
+    private val viewMapper: PokemonDetailViewMapper
+) :
+    BaseViewModel<PokemonDetailViewModel.PokemonDetailViewData>() {
+    private var pokemonDetailsBind: PokemonDetailBindView? = null
     private var mainViewData =
-        PokemonDetailViewData(Status.LOADING)
+        PokemonDetailViewData(Status.LOADING, pokemonDetailsBind)
 
     init {
         data.value = mainViewData
     }
 
-    fun getPokemonById(long: Long) {
-        //TODO execute here usecase
+    fun getPokemonById(id: Long) {
+        executeUseCase {
+            getPokemonDetails.execute(id.toString()).subscribe(
+                executor = AndroidSchedulers.mainThread(),
+                onSuccess = { pokemonDetails ->
+                    pokemonDetailsBind = viewMapper.map(pokemonDetails)
+                    data.postValue(mainViewData.apply {
+                        status = Status.SUCCESS
+                        pokemon = pokemonDetailsBind
+                    })
+                },
+                onError = {
+                    data.postValue(mainViewData.apply {
+                        status = Status.ERROR
+                    })
+                }
+            )
+        }
     }
 
     class PokemonDetailViewData(
         override var status: Status,
-        val pokemon: PokemonDetailBindView? = null
+        var pokemon: PokemonDetailBindView? = null
     ) : Data
 
     class PokemonDetailBindView(

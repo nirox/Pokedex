@@ -24,8 +24,12 @@ class PokemonRepositoryImpl @Inject constructor(
     override fun getPokemons(): Single<List<Pokemon>> =
         pokemonService.getPokemonList().map { pokemonDataMapper.map(it.results) }
 
-    override fun getNextPokemons(offset: Long): Single<List<Pokemon>> =
-        pokemonService.getPokemonList(offset = offset.toString()).map { pokemonDataMapper.map(it.results) }
+    override fun getNextPokemons(offset: Long) = pokemonService.getPokemonList(offset = offset.toString()).map {
+        it.results.mapNotNull { pokemon ->
+            pokemonDataMapper.map(pokemon)
+        }
+    }
+
 
     override fun getPokemonDetails(id: String) = Single.create<PokemonDetails> { emitter ->
         pokemonService.getPokemonDetails(id).subscribe(

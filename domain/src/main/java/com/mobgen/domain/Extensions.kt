@@ -41,3 +41,5 @@ fun <T> Single<T>.subscribe(
             onError(it)
         })
 }
+
+fun String.removeLineBreak() = this.replace (regex = Regex("[\n]"), replacement = " ")
