@@ -62,36 +62,39 @@ class PokemonRepositoryImpl @Inject constructor(
         )
     }
 
-    override fun getRandomPokemons(number: Int): Single<List<Pokemon>> = Single.create { emitter ->
-        var numberIds = number
-        var id: Int
-        var wait = false
-        val pokemons: ArrayList<Pokemon> = ArrayList()
+    override fun getRandomPokemons(number: Int, noPosibleIds: List<Long>): Single<List<Pokemon>> =
+        Single.create { emitter ->
+            var numberIds = number
+            val ids: MutableList<Int> = mutableListOf()
+            var wait = false
+            val pokemons: ArrayList<Pokemon> = ArrayList()
 
-        while (numberIds > 0) {
-            if (!wait) {
-                id = UtilDomain.getRandomPokemon()
-                wait = true
-                numberIds--
-                pokemonService.getPokemonDetails(id.toString()).subscribe(
-                    executor = Schedulers.computation(),
-                    onError = {
-                        emitter.onError(it)
-                    },
-                    onSuccess = { detailsRequestEntity ->
-                        wait = false
-                        pokemons.add(
-                            pokemonDetailsDataMapper.map(
-                                detailsRequestEntity
+            while (numberIds >= 0) {
+                if (!wait) {
+                    var id = UtilDomain.getRandomPokemon()
+                    while (ids.contains(id) || noPosibleIds.contains(id.toLong())) id = UtilDomain.getRandomPokemon()
+                    ids.add(id)
+                    wait = true
+                    numberIds--
+                    pokemonService.getPokemonDetails(id.toString()).subscribe(
+                        executor = Schedulers.computation(),
+                        onError = {
+                            emitter.onError(it)
+                        },
+                        onSuccess = { detailsRequestEntity ->
+                            wait = false
+                            pokemons.add(
+                                pokemonDetailsDataMapper.map(
+                                    detailsRequestEntity
+                                )
                             )
-                        )
 
-                    }
-                )
+                        }
+                    )
+                }
             }
-        }
 
-        emitter.onSuccess(pokemons)
-    }
+            emitter.onSuccess(pokemons)
+        }
 
 }

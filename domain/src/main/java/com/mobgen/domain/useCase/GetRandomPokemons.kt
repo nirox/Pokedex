@@ -6,5 +6,6 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class GetRandomPokemons @Inject constructor(private val repository: PokemonRepository) {
-    fun execute(number: Int): Single<List<Pokemon>> = repository.getRandomPokemons(number)
+    fun execute(number: Int, noPosibleIds: List<Long>): Single<List<Pokemon>> =
+        repository.getRandomPokemons(number, noPosibleIds)
 }
