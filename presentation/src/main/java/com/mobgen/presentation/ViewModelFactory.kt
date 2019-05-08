@@ -18,7 +18,7 @@ class ViewModelFactory
     private val getPokemons: GetPokemons,
     private val getRandomPokemons: GetRandomPokemons,
     private val pokemonBindViewMapper: PokemonBindViewMapper,
-    private val pokemonRandomMapper: PokemonRandomViewMapper
+    private val pokemonRandomMapper: PokemonRandomViewMapper,
     private val getPokemonDetails: GetPokemonDetails,
     private val viewMapper: PokemonDetailViewMapper
 ) : ViewModelProvider.Factory {
