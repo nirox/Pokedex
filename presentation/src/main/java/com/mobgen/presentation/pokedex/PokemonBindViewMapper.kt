@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class PokemonBindViewMapper @Inject constructor() : ViewMapper<Pokemon, PokedexViewModel.PokemonBindView> {
     override fun map(value: Pokemon): PokedexViewModel.PokemonBindView {
-        return PokedexViewModel.PokemonBindView(value.id, value.name, value.imageUrl)
+        return PokedexViewModel.PokemonBindView(value.id, value.name.capitalize(), value.imageUrl)
     }
 }

@@ -120,7 +120,7 @@ class PokedexActivity : DaggerAppCompatActivity(), PokedexActivityListener {
     private fun listGrid() {
         adapter = PokedexAdapter(
             PokedexAdapter.TYPE_GRID,
-            listOf(),
+            viewModel.data.value?.pokemons ?: listOf(),
             object : PokedexAdapter.OnClickItemListener {
                 override fun onClickItem(id: Long) {
                     if (!fragmentOpen) {
@@ -138,7 +138,7 @@ class PokedexActivity : DaggerAppCompatActivity(), PokedexActivityListener {
     private fun listLineal() {
         adapter = PokedexAdapter(
             PokedexAdapter.TYPE_LIST,
-            listOf(),
+            viewModel.data.value?.pokemons ?: listOf(),
             object : PokedexAdapter.OnClickItemListener {
                 override fun onClickItem(id: Long) {
                     if (!fragmentOpen) {

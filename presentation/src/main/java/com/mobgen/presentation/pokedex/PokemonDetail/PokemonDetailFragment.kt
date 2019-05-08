@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.mobgen.presentation.BaseViewModel
@@ -22,6 +24,10 @@ class PokemonDetailFragment : DaggerFragment() {
 
     lateinit var viewModel: PokemonDetailViewModel
     lateinit var activityListener: PokedexActivityListener
+    var typesText = mutableListOf<TextView>()
+    var typesImage = mutableListOf<ImageView>()
+    var evolutions = mutableListOf<ImageView>()
+    var evolutionArrows = mutableListOf<ImageView>()
 
     companion object {
         const val TAG = "PokemonDetailFragment"
@@ -66,8 +72,20 @@ class PokemonDetailFragment : DaggerFragment() {
             }
         })
         initListener()
-
+        initView()
         viewModel.getPokemonById(arguments?.getLong(ARG_ID) ?: -1L)
+    }
+
+    private fun initView() {
+        typesImage.add(pokemonType1Image)
+        typesImage.add(pokemonType2Image)
+        typesText.add(pokemonType1)
+        typesText.add(pokemonType2)
+        evolutions.add(evolution1)
+        evolutions.add(evolution2)
+        evolutions.add(evolution3)
+        evolutionArrows.add(evolutionArrow1)
+        evolutionArrows.add(evolutionArrow2)
     }
 
     private fun initListener() {
@@ -78,27 +96,18 @@ class PokemonDetailFragment : DaggerFragment() {
 
     private fun bindData(pokemon: PokemonDetailViewModel.PokemonDetailBindView?) {
         pokemon?.let {
-            pokemonName.text = pokemon.name
+            descriptionLabel.visibility = View.VISIBLE
+            pokemonName.text = pokemon.name.capitalize()
             description.text = pokemon.description
             Glide.with(this).load(pokemon.image).into(pokemonImage)
-            pokemonType1.text = pokemon.type.first().first
-            Glide.with(this).load(pokemon.type.first().second).into(pokemonType1Image)
-            pokemonType2.text = pokemon.type.last().first
-            Glide.with(this).load(pokemon.type.last().second).into(pokemonType2Image)
-            if (pokemon.evolutions.isNotEmpty()) {
-                evolutionLabel.visibility = View.VISIBLE
-                evolution1.visibility = View.VISIBLE
-                Glide.with(this).load(pokemon.evolutions.first().second).into(evolution1)
-                if (pokemon.evolutions.size >= 2) {
-                    evolution2.visibility = View.VISIBLE
-                    evolutionArrow1.visibility = View.VISIBLE
-                    Glide.with(this).load(pokemon.evolutions.first().second).into(evolution2)
-                    if (pokemon.evolutions.size >= 3) {
-                        evolutionArrow2.visibility = View.VISIBLE
-                        evolution3.visibility = View.VISIBLE
-                        Glide.with(this).load(pokemon.evolutions.first().second).into(evolution2)
-                    }
-                }
+            pokemon.type.forEachIndexed { index, value ->
+                typesText[index].text = value.first
+                Glide.with(this).load(value.second).into(typesImage[index])
+            }
+            if (pokemon.evolutions.isNotEmpty()) evolutionLabel.visibility = View.VISIBLE
+            pokemon.evolutions.forEachIndexed { index, value ->
+                if (index != 0) evolutionArrows[index - 1].visibility = View.VISIBLE
+                Glide.with(this).load(value.second).into(evolutions[index].also { it.visibility = View.VISIBLE })
             }
         }
     }

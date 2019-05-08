@@ -7,4 +7,5 @@ data class TypesEntity(
         val url: String,
         val name: String
     )
+
 }

@@ -17,7 +17,6 @@
             tools:srcCompat="@drawable/pokemon"
             android:id="@+id/image"
             android:layout_margin="8dp"
-            android:background="@drawable/round_image"
             android:adjustViewBounds="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -33,7 +33,6 @@
     <ImageView
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:src="@drawable/pokemon3"
             android:id="@+id/pokemonImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +41,6 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pikachu"
             android:src="@drawable/pokemon"
             android:id="@+id/pokemonName"
             android:fontFamily="@font/minecraft"
@@ -52,9 +50,8 @@
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="@+id/pokemonImage"/>
     <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/pokemon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:id="@+id/pokemonType1Image"
             app:layout_constraintTop_toTopOf="@id/pokemonType1"
             app:layout_constraintBottom_toBottomOf="@+id/pokemonType1"
@@ -66,9 +63,9 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Electrico"
             android:src="@drawable/pokemon"
             android:id="@+id/pokemonType1"
+            android:layout_marginStart="5dp"
             android:fontFamily="@font/minecraft"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="10sp"
@@ -79,9 +76,8 @@
             app:layout_constraintHorizontal_bias="0.5" app:layout_constraintBottom_toTopOf="@+id/pokemonType2"/>
 
     <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/pokemon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:id="@+id/pokemonType2Image"
             app:layout_constraintTop_toTopOf="@id/pokemonType2"
             app:layout_constraintBottom_toBottomOf="@+id/pokemonType2"
@@ -93,8 +89,8 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bicho"
             android:src="@drawable/pokemon"
+            android:layout_marginStart="5dp"
             android:id="@+id/pokemonType2"
             android:fontFamily="@font/minecraft"
             android:layout_marginTop="10sp"
@@ -108,6 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/description"
+            android:visibility="invisible"
             android:src="@drawable/pokemon"
             android:id="@+id/descriptionLabel"
             android:fontFamily="@font/minecraft"
@@ -122,7 +119,6 @@
     <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokemon mistook the intensity of its charge."
             android:src="@drawable/pokemon"
             android:id="@+id/description"
             android:fontFamily="@font/minecraft"
