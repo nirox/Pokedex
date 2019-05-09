@@ -45,24 +45,26 @@ class PokedexViewModel(private val getPokemons: GetPokemons, private val pokemon
     }
 
     private fun getLastPage() {
-        data.value = pokedexViewData.apply { status = Status.LOADING }
-        executeUseCase {
-            getPokemons.next().subscribe(
-                executor = AndroidSchedulers.mainThread(),
-                onSuccess = {
-                    _pokemons.addAll(it.map(pokemonBindViewMapper::map))
-                    data.postValue(pokedexViewData.apply {
-                        pokemons = _pokemons
-                        status = Status.SUCCESS
-                    })
+        if (pokedexViewData.status != Status.LOADING) {
+            data.value = pokedexViewData.apply { status = Status.LOADING }
+            executeUseCase {
+                getPokemons.next().subscribe(
+                    executor = AndroidSchedulers.mainThread(),
+                    onSuccess = {
+                        _pokemons.addAll(it.map(pokemonBindViewMapper::map))
+                        data.postValue(pokedexViewData.apply {
+                            pokemons = _pokemons
+                            status = Status.SUCCESS
+                        })
 
-                },
-                onError = {
-                    data.postValue(pokedexViewData.apply {
-                        status = Status.ERROR
-                    })
-                }
-            )
+                    },
+                    onError = {
+                        data.postValue(pokedexViewData.apply {
+                            status = Status.ERROR
+                        })
+                    }
+                )
+            }
         }
     }
 
