@@ -4,6 +4,7 @@
     <color name="backgroundButtonGame">#414848</color>
     <color name="backgroundButtonGameDark">#1E1E1E</color>
     <color name="green">#3A963B</color>
+    <color name="blue">#3A3B96</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000</color>
 </resources>

@@ -9,5 +9,5 @@
     <string name="evolutions">Evolutions</string>
     <string name="checkConnection">Error to connect the server, please check your connection</string>
     <string name="round">/%d rounds</string>
-    <string name="points">%d points</string>
+    <string name="points">Score:\n%d</string>
 </resources>

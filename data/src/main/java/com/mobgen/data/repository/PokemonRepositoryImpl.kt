@@ -92,7 +92,6 @@ class PokemonRepositoryImpl @Inject constructor(
                                     detailsRequestEntity
                                 )
                             )
-
                         }
                     )
                 }

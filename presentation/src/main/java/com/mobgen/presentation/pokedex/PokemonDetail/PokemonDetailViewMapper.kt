@@ -13,6 +13,26 @@ class PokemonDetailViewMapper @Inject constructor(private val typeViewMapper: Ty
             value.imageUrl,
             value.description,
             value.types.map(typeViewMapper::map),
+            when (value.types.first()) {
+                PokemonDetails.Type.Bug -> R.drawable.bug_background
+                PokemonDetails.Type.Dark -> R.drawable.dark_background
+                PokemonDetails.Type.Dragon -> R.drawable.dragon_background
+                PokemonDetails.Type.Electric -> R.drawable.electric_background
+                PokemonDetails.Type.Fairy -> R.drawable.fairy_background
+                PokemonDetails.Type.Fighting -> R.drawable.fighting_background
+                PokemonDetails.Type.Fire -> R.drawable.fire_background
+                PokemonDetails.Type.Flying -> R.drawable.flying_background
+                PokemonDetails.Type.Ghost -> R.drawable.gosth_background
+                PokemonDetails.Type.Grass -> R.drawable.grass_background
+                PokemonDetails.Type.Ground -> R.drawable.ground_background
+                PokemonDetails.Type.Ice -> R.drawable.ice_background
+                PokemonDetails.Type.Normal -> R.drawable.normal_background
+                PokemonDetails.Type.Poison -> R.drawable.poison_background
+                PokemonDetails.Type.Psychic -> R.drawable.psychic_background
+                PokemonDetails.Type.Rock -> R.drawable.rock_background
+                PokemonDetails.Type.Steel -> R.drawable.steel_background
+                else -> R.drawable.water_background
+            },
             value.evolutions.map { Pair(it.name, it.imageUrl) })
     }
 
@@ -40,6 +60,7 @@ class PokemonDetailViewMapper @Inject constructor(private val typeViewMapper: Ty
                 else -> R.drawable.water
             }
         )
-
     }
+
+
 }

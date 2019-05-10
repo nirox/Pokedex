@@ -64,6 +64,7 @@ class PokemonDetailFragment : DaggerFragment() {
                     BaseViewModel.Status.SUCCESS -> {
                         load.visibility = View.GONE
                         bindData(data.pokemon)
+                        detailBackground.setBackgroundResource(data.pokemon!!.detailBackground)
                     }
                     BaseViewModel.Status.ERROR -> {
                         Toast.makeText(context, getString(R.string.checkConnection), Toast.LENGTH_LONG).show()

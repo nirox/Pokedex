@@ -34,9 +34,8 @@ class GameActivity : DaggerAppCompatActivity() {
         const val POKEMON_GENERATE_PER_ROUND = 4
         const val TOTAL_ROUNDS = 10
         const val TIME_TO_RESET = 1000L
-        const val TEXT_FORMAT = "%s%s"
+        const val TEXT_FORMAT = "%d%s"
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +49,7 @@ class GameActivity : DaggerAppCompatActivity() {
                     load.visibility = View.GONE
                     resetView()
                     bindPokemon(data.randomPokemons)
+
                 }
                 if (data.status == BaseViewModel.Status.ERROR) {
                     Toast.makeText(this, getString(R.string.checkConnection), Toast.LENGTH_LONG).show()
@@ -63,7 +63,7 @@ class GameActivity : DaggerAppCompatActivity() {
     }
 
     private fun initView() {
-        roundCounter.text = String.format(TEXT_FORMAT, points, String.format(getString(R.string.round), TOTAL_ROUNDS))
+        roundCounter.text = String.format(TEXT_FORMAT, round, String.format(getString(R.string.round), TOTAL_ROUNDS))
         pokemonButtons.add(pokemon1)
         pokemonButtons.add(pokemon2)
         pokemonButtons.add(pokemon3)
@@ -84,6 +84,10 @@ class GameActivity : DaggerAppCompatActivity() {
             onBackPressed()
         }
 
+        restart.setOnClickListener {
+            resetGame()
+        }
+
         pokemonButtons.forEach { button ->
             button.setOnClickListener {
                 if (viewModel.data.value?.status != BaseViewModel.Status.LOADING) {
@@ -96,17 +100,17 @@ class GameActivity : DaggerAppCompatActivity() {
                     }
                     if (round <= TOTAL_ROUNDS) checkPokemonName(button, button.text.toString())
                     if (round == TOTAL_ROUNDS) finishGame()
-
                 }
-
             }
         }
     }
 
     private fun finishGame() {
         round++
+        pokemonImage.alpha = 0.5f
         roundCounter.text = ""
         totalPoints.text = String.format(getString(R.string.points), points)
+        restart.visibility = View.VISIBLE
     }
 
     private fun checkPokemonName(button: Button, name: String) {
@@ -118,7 +122,6 @@ class GameActivity : DaggerAppCompatActivity() {
             button.background = getDrawable(R.drawable.button_round_green)
             points++
         }
-
     }
 
     private fun resetView() {
@@ -129,6 +132,21 @@ class GameActivity : DaggerAppCompatActivity() {
             getColor(R.color.black),
             android.graphics.PorterDuff.Mode.MULTIPLY
         )
+    }
+
+    private fun resetGame() {
+        load.visibility = View.VISIBLE
+        restart.visibility = View.GONE
+        round = 0
+        points = 0
+        pokemonButtons.forEach { it.text = "" }
+        pokemonImage.setImageURI(null)
+        pokemonImage.alpha = 1f
+        roundCounter.text =
+            String.format(TEXT_FORMAT, round, String.format(getString(R.string.round), TOTAL_ROUNDS))
+        totalPoints.text = ""
+        resetView()
+        viewModel.getPokemon()
     }
 
 }

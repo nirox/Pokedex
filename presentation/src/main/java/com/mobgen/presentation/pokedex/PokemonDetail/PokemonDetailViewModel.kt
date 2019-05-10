@@ -48,6 +48,7 @@ class PokemonDetailViewModel(
         val image: String,
         val description: String,
         val type: List<Pair<String, Int>>,
+        val detailBackground: Int,
         val evolutions: List<Pair<String, String>>
     )
 }

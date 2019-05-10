@@ -20,6 +20,8 @@ class PokedexAdapter(
     companion object {
         const val TYPE_GRID = 0
         const val TYPE_LIST = 1
+        const val MAX_DIGITS = 3
+        const val NUMBER_SYMBOL = "#%s"
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int) = DataViewHolder(
@@ -55,6 +57,7 @@ class PokedexAdapter(
             }
                 .into(itemView.image)
             itemView.name.text = value.name
+            itemView.number.text = String.format(NUMBER_SYMBOL, value.id.toString().padStart(MAX_DIGITS, '0'))
         }
 
     }
