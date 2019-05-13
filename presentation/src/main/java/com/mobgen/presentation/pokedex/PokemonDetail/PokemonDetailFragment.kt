@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide
 import com.mobgen.presentation.BaseViewModel
 import com.mobgen.presentation.R
 import com.mobgen.presentation.ViewModelFactory
-import com.mobgen.presentation.pokedex.PokedexActivity
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_pokemon_detail.*
 import java.util.*
@@ -35,7 +34,7 @@ class PokemonDetailFragment : DaggerFragment(), TextToSpeech.OnInitListener {
     var typesImage = mutableListOf<ImageView>()
     var evolutions = mutableListOf<ImageView>()
     var evolutionArrows = mutableListOf<ImageView>()
-    lateinit var textToSpeech : TextToSpeech
+    lateinit var textToSpeech: TextToSpeech
 
     companion object {
         const val TAG = "PokemonDetailFragment"
@@ -73,7 +72,7 @@ class PokemonDetailFragment : DaggerFragment(), TextToSpeech.OnInitListener {
                         load.visibility = View.GONE
                         bindData(data.pokemon)
                         detailBackground.setBackgroundResource(data.pokemon!!.detailBackground)
-                        textToSpeech = TextToSpeech(this.context, this)
+                        textToSpeech = TextToSpeech(this.context, this).apply { language = Locale.ENGLISH }
                     }
                     BaseViewModel.Status.ERROR -> {
                         Toast.makeText(context, getString(R.string.checkConnection), Toast.LENGTH_LONG).show()
@@ -124,7 +123,8 @@ class PokemonDetailFragment : DaggerFragment(), TextToSpeech.OnInitListener {
 
     private fun speachText() {
         //while (description.text.isNullOrBlank()) {}
-        val text = String.format(getString(R.string.speechText), pokemonName.text.toString(), description.text.toString())
+        val text =
+            String.format(getString(R.string.speechText), pokemonName.text.toString(), description.text.toString())
         textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
     }
 
