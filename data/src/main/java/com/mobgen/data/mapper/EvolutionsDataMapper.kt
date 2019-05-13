@@ -4,9 +4,8 @@ import PokemonApiConstants
 import com.mobgen.data.entity.EvolutionEntity
 import com.mobgen.data.entity.EvolveToEntity
 import com.mobgen.domain.model.Pokemon
-import javax.inject.Inject
 
-class EvolutionsDataMapper @Inject constructor() : DataMapper<EvolutionEntity, List<Pokemon>> {
+class EvolutionsDataMapper : DataMapper<EvolutionEntity, List<Pokemon>> {
     override fun map(value: EvolutionEntity): List<Pokemon> {
         val pokemonsMutable = mutableListOf<Pokemon>()
         var id = Util.getId(value.chain.species.url).toLong()

@@ -1,27 +1,23 @@
 package com.mobgen.presentation.game
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.mobgen.presentation.BaseViewModel
 import com.mobgen.presentation.R
-import com.mobgen.presentation.ViewModelFactory
-import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_game.*
-import javax.inject.Inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class GameActivity : DaggerAppCompatActivity() {
+class GameActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
 
-    lateinit var viewModel: GameViewModel
+    private val viewModel by viewModel<GameViewModel>()
     private val pokemonButtons = mutableListOf<Button>()
     private var pokemonTarget: String = String()
     private var round = 0
@@ -41,8 +37,6 @@ class GameActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(GameViewModel::class.java)
 
         viewModel.data.observe(this, Observer {
             it?.let { data ->

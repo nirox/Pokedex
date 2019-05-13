@@ -11,10 +11,9 @@ import com.mobgen.domain.model.PokemonDetails
 import com.mobgen.domain.subscribe
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
 import com.mobgen.domain.Util as UtilDomain
 
-class PokemonRepositoryImpl @Inject constructor(
+class PokemonRepositoryImpl (
     private val pokemonService: PokemonService,
     private val speciesService: SpeciesService,
     private val pokemonDataMapper: PokemonDataMapper,

@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,21 +15,16 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.mobgen.presentation.BaseViewModel
 import com.mobgen.presentation.R
-import com.mobgen.presentation.ViewModelFactory
-import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_pokemon_detail.*
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
-import javax.inject.Inject
 
-class PokemonDetailFragment : DaggerFragment(), TextToSpeech.OnInitListener {
+class PokemonDetailFragment : Fragment(), TextToSpeech.OnInitListener {
     override fun onInit(status: Int) {
         speachText()
     }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    lateinit var viewModel: PokemonDetailViewModel
+    private val viewModel by viewModel<PokemonDetailViewModel>()
     lateinit var activityListener: PokedexActivityListener
     var typesText = mutableListOf<TextView>()
     var typesImage = mutableListOf<ImageView>()
@@ -60,7 +56,6 @@ class PokemonDetailFragment : DaggerFragment(), TextToSpeech.OnInitListener {
 
     override fun onResume() {
         super.onResume()
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(PokemonDetailViewModel::class.java)
 
         viewModel.data.observe(this, Observer {
             it?.let { data ->

@@ -7,9 +7,8 @@ import com.mobgen.data.entity.PokemonSpeciesEntity
 import com.mobgen.domain.model.Pokemon
 import com.mobgen.domain.model.PokemonDetails
 import com.mobgen.domain.removeLineBreak
-import javax.inject.Inject
 
-class PokemonDetailsDataMapper @Inject constructor(private val evolutionsDataMapper: EvolutionsDataMapper) {
+class PokemonDetailsDataMapper (private val evolutionsDataMapper: EvolutionsDataMapper) {
     fun map(detail: DetailsRequestEntity, evolution: EvolutionEntity, species: PokemonSpeciesEntity): PokemonDetails {
         return PokemonDetails(detail.id,
             detail.name,

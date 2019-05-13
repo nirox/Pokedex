@@ -8,8 +8,6 @@ dependencies {
     //rxJava
     implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlin_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroid_version"
-    //dagger
-    implementation "com.google.dagger:dagger:$daggerVersion"
 }
 
 sourceCompatibility = "7"

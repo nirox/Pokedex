@@ -1,14 +1,21 @@
 package com.mobgen.pokedex
 
-import com.mobgen.pokedex.di.DaggerAppComponent
-import dagger.android.AndroidInjector
-import dagger.android.support.DaggerApplication
+import android.app.Application
+import com.mobgen.pokedex.di.dataModule
+import com.mobgen.pokedex.di.domainModule
+import com.mobgen.pokedex.di.presentationModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 
-class PokedexApplication : DaggerApplication() {
+class PokedexApplication : Application() {
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerAppComponent.builder().create(this)
+    override fun onCreate() {
+        super.onCreate()
+        startKoin {
+            androidContext(this@PokedexApplication)
+            modules(listOf(presentationModule, domainModule, dataModule))
+        }
     }
 
 }

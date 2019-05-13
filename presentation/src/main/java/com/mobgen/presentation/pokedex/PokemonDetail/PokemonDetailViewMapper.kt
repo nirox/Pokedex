@@ -3,9 +3,8 @@ package com.mobgen.presentation.pokedex.pokemonDetail
 import com.mobgen.domain.model.PokemonDetails
 import com.mobgen.presentation.R
 import com.mobgen.presentation.ViewMapper
-import javax.inject.Inject
 
-class PokemonDetailViewMapper @Inject constructor(private val typeViewMapper: TypeViewMapper) :
+class PokemonDetailViewMapper(private val typeViewMapper: TypeViewMapper) :
     ViewMapper<PokemonDetails, PokemonDetailViewModel.PokemonDetailBindView> {
     override fun map(value: PokemonDetails): PokemonDetailViewModel.PokemonDetailBindView {
         return PokemonDetailViewModel.PokemonDetailBindView(
@@ -36,7 +35,7 @@ class PokemonDetailViewMapper @Inject constructor(private val typeViewMapper: Ty
             value.evolutions.map { Pair(it.name, it.imageUrl) })
     }
 
-    class TypeViewMapper @Inject constructor() : ViewMapper<PokemonDetails.Type, Pair<String, Int>> {
+    class TypeViewMapper : ViewMapper<PokemonDetails.Type, Pair<String, Int>> {
         override fun map(value: PokemonDetails.Type): Pair<String, Int> = Pair(
             value.tName.capitalize(),
             when (value) {

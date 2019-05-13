@@ -1,10 +1,10 @@
 package com.mobgen.presentation.pokedex
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -13,24 +13,22 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.mobgen.presentation.BaseViewModel
 import com.mobgen.presentation.R
-import com.mobgen.presentation.ViewModelFactory
 import com.mobgen.presentation.pokedex.pokemonDetail.PokedexActivityListener
 import com.mobgen.presentation.pokedex.pokemonDetail.PokemonDetailFragment
-import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_pokedex.*
-import javax.inject.Inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class PokedexActivity : DaggerAppCompatActivity(), PokedexActivityListener {
+class PokedexActivity : AppCompatActivity(), PokedexActivityListener {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
 
-    lateinit var viewModel: PokedexViewModel
+    private val viewModel by viewModel<PokedexViewModel>()
     lateinit var adapter: PokedexAdapter
     private var fragmentOpen = false
 
     companion object {
-        fun newInstance(context: Context) = Intent(context, PokedexActivity::class.java).apply { addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP) }
+        fun newInstance(context: Context) =
+            Intent(context, PokedexActivity::class.java).apply { addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP) }
+
         private const val SCROLL_RANGE_TO_NEXT_PAGE = 4
         private const val COLS_NUMBER_GRID = 2
     }
@@ -38,8 +36,6 @@ class PokedexActivity : DaggerAppCompatActivity(), PokedexActivityListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pokedex)
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(PokedexViewModel::class.java)
 
         viewModel.data.observe(this, Observer {
             it?.let { data ->
