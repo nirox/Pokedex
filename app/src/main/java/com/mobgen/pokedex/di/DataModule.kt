@@ -46,10 +46,6 @@ fun providePokemonService(retrofit: Retrofit): PokemonService = retrofit.create(
 
 fun provideSpeciesService(retrofit: Retrofit): SpeciesService = retrofit.create(SpeciesService::class.java)
 
-/*@Provides
-internal fun provideGson(): Gson {
-    return GsonBuilder().create()
-}*/
 
 
 

@@ -12,6 +12,7 @@ class PokedexApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
         startKoin {
             androidContext(this@PokedexApplication)
             modules(listOf(presentationModule, domainModule, dataModule))
