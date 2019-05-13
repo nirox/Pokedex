@@ -13,7 +13,7 @@ class PokemonDetailsDataMapper @Inject constructor(private val evolutionsDataMap
     fun map(detail: DetailsRequestEntity, evolution: EvolutionEntity, species: PokemonSpeciesEntity): PokemonDetails {
         return PokemonDetails(detail.id,
             detail.name,
-            species.flavor_text_entries.first { it.language.name == PokemonApiConstants.DEFAULT_LANGUAGE }.flavor_text.removeLineBreak(),
+            species.flavor_text_entries.last { it.language.name == PokemonApiConstants.DEFAULT_LANGUAGE }.flavor_text.removeLineBreak(),
             String.format(PokemonApiConstants.IMAGE_URL, detail.id),
             detail.height.toString(),
             detail.weight.toString(),

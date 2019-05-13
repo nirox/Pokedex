@@ -4,6 +4,7 @@ package com.mobgen.presentation.pokedex.pokemonDetail
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +15,17 @@ import com.bumptech.glide.Glide
 import com.mobgen.presentation.BaseViewModel
 import com.mobgen.presentation.R
 import com.mobgen.presentation.ViewModelFactory
+import com.mobgen.presentation.pokedex.PokedexActivity
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_pokemon_detail.*
+import java.util.*
 import javax.inject.Inject
 
-class PokemonDetailFragment : DaggerFragment() {
+class PokemonDetailFragment : DaggerFragment(), TextToSpeech.OnInitListener {
+    override fun onInit(status: Int) {
+        speachText()
+    }
+
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
@@ -28,6 +35,7 @@ class PokemonDetailFragment : DaggerFragment() {
     var typesImage = mutableListOf<ImageView>()
     var evolutions = mutableListOf<ImageView>()
     var evolutionArrows = mutableListOf<ImageView>()
+    lateinit var textToSpeech : TextToSpeech
 
     companion object {
         const val TAG = "PokemonDetailFragment"
@@ -65,6 +73,7 @@ class PokemonDetailFragment : DaggerFragment() {
                         load.visibility = View.GONE
                         bindData(data.pokemon)
                         detailBackground.setBackgroundResource(data.pokemon!!.detailBackground)
+                        textToSpeech = TextToSpeech(this.context, this)
                     }
                     BaseViewModel.Status.ERROR -> {
                         Toast.makeText(context, getString(R.string.checkConnection), Toast.LENGTH_LONG).show()
@@ -112,4 +121,19 @@ class PokemonDetailFragment : DaggerFragment() {
             }
         }
     }
+
+    private fun speachText() {
+        //while (description.text.isNullOrBlank()) {}
+        val text = String.format(getString(R.string.speechText), pokemonName.text.toString(), description.text.toString())
+        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
+    }
+
+    override fun onDestroy() {
+        if (textToSpeech != null) {
+            textToSpeech.stop()
+            textToSpeech.shutdown()
+        }
+        super.onDestroy()
+    }
+
 }

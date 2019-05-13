@@ -8,7 +8,9 @@
         android:translationZ="5dp"
         android:background="@color/white"
         tools:context=".pokedex.pokemonDetail.PokemonDetailFragment"
-        android:id="@+id/detailBackground">
+        android:id="@+id/detailBackground"
+        android:clickable="true"
+>
     <Button
             android:layout_width="60dp"
             android:layout_height="60dp"

@@ -35,6 +35,7 @@ class GameActivity : DaggerAppCompatActivity() {
         const val TOTAL_ROUNDS = 10
         const val TIME_TO_RESET = 1000L
         const val TEXT_FORMAT = "%d%s"
+        const val MEDIUM_ALPHA = 0.5F
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +50,6 @@ class GameActivity : DaggerAppCompatActivity() {
                     load.visibility = View.GONE
                     resetView()
                     bindPokemon(data.randomPokemons)
-
                 }
                 if (data.status == BaseViewModel.Status.ERROR) {
                     Toast.makeText(this, getString(R.string.checkConnection), Toast.LENGTH_LONG).show()
@@ -73,6 +73,7 @@ class GameActivity : DaggerAppCompatActivity() {
     private fun bindPokemon(pokemons: List<GameViewModel.PokemonRandomBindView>) {
         round++
         Glide.with(this).load(pokemons.first().image).into(pokemonImage)
+        pokemonImage.visibility = View.VISIBLE
         pokemonTarget = pokemons.first().name
         pokemons.shuffled().forEachIndexed { index, pokemonRandomBindView ->
             pokemonButtons[index].text = pokemonRandomBindView.name
@@ -107,7 +108,7 @@ class GameActivity : DaggerAppCompatActivity() {
 
     private fun finishGame() {
         round++
-        pokemonImage.alpha = 0.5f
+        pokemonImage.alpha = MEDIUM_ALPHA
         roundCounter.text = ""
         totalPoints.text = String.format(getString(R.string.points), points)
         restart.visibility = View.VISIBLE
@@ -140,13 +141,12 @@ class GameActivity : DaggerAppCompatActivity() {
         round = 0
         points = 0
         pokemonButtons.forEach { it.text = "" }
-        pokemonImage.setImageURI(null)
-        pokemonImage.alpha = 1f
+        pokemonImage.alpha = 1F
+        pokemonImage.visibility = View.GONE
         roundCounter.text =
             String.format(TEXT_FORMAT, round, String.format(getString(R.string.round), TOTAL_ROUNDS))
         totalPoints.text = ""
         resetView()
         viewModel.getPokemon()
     }
-
 }
