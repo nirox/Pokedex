@@ -43,7 +43,6 @@ class GameViewModel(
 
                     },
                     onError = {
-                        throw it
                         data.postValue(mainViewData.apply {
                             status = Status.ERROR
                         })

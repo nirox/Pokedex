@@ -86,12 +86,12 @@ class PokemonRepositoryImpl @Inject constructor(
                             emitter.onError(it)
                         },
                         onSuccess = { detailsRequestEntity ->
-                            wait = false
                             pokemons.add(
                                 pokemonDetailsDataMapper.map(
                                     detailsRequestEntity
                                 )
                             )
+                            wait = false
                         }
                     )
                 }
