@@ -2,7 +2,6 @@ package com.mobgen.presentation.pokedex.pokemonDetail
 
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.support.v4.app.Fragment
@@ -19,18 +18,16 @@ import kotlinx.android.synthetic.main.fragment_pokemon_detail.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
 
-class PokemonDetailFragment : Fragment(), TextToSpeech.OnInitListener {
-    override fun onInit(status: Int) {
-        speachText()
-    }
+class PokemonDetailFragment : Fragment() {
 
     private val viewModel by viewModel<PokemonDetailViewModel>()
     lateinit var activityListener: PokedexActivityListener
-    var typesText = mutableListOf<TextView>()
-    var typesImage = mutableListOf<ImageView>()
-    var evolutions = mutableListOf<ImageView>()
-    var evolutionArrows = mutableListOf<ImageView>()
-    lateinit var textToSpeech: TextToSpeech
+    private val typesText = mutableListOf<TextView>()
+    private val typesImage = mutableListOf<ImageView>()
+    private val evolutions = mutableListOf<ImageView>()
+    private val evolutionArrows = mutableListOf<ImageView>()
+    private var id: Long = 0L
+    private lateinit var textToSpeech: TextToSpeech
 
     companion object {
         const val TAG = "PokemonDetailFragment"
@@ -67,7 +64,7 @@ class PokemonDetailFragment : Fragment(), TextToSpeech.OnInitListener {
                         load.visibility = View.GONE
                         bindData(data.pokemon)
                         detailBackground.setBackgroundResource(data.pokemon!!.detailBackground)
-                        textToSpeech = TextToSpeech(this.context, this).apply { language = Locale.ENGLISH }
+                        speachText()
                     }
                     BaseViewModel.Status.ERROR -> {
                         Toast.makeText(context, getString(R.string.checkConnection), Toast.LENGTH_LONG).show()
@@ -77,10 +74,12 @@ class PokemonDetailFragment : Fragment(), TextToSpeech.OnInitListener {
         })
         initListener()
         initView()
-        viewModel.getPokemonById(arguments?.getLong(ARG_ID) ?: -1L)
+        viewModel.getPokemonById(id)
     }
 
     private fun initView() {
+        id = arguments?.getLong(ARG_ID) ?: -1L
+        textToSpeech = TextToSpeech(context, TextToSpeech.OnInitListener {}).apply { language = Locale.ENGLISH }
         typesImage.add(pokemonType1Image)
         typesImage.add(pokemonType2Image)
         typesText.add(pokemonType1)
@@ -110,24 +109,26 @@ class PokemonDetailFragment : Fragment(), TextToSpeech.OnInitListener {
             }
             if (pokemon.evolutions.isNotEmpty()) evolutionLabel.visibility = View.VISIBLE
             pokemon.evolutions.forEachIndexed { index, value ->
+                if (value.id != id) evolutions[index].setOnClickListener {
+                    activityListener.goToPokemonDetail(value.id)
+                    textToSpeech.stop()
+                    textToSpeech.shutdown()
+                }
                 if (index != 0) evolutionArrows[index - 1].visibility = View.VISIBLE
-                Glide.with(this).load(value.second).into(evolutions[index].also { it.visibility = View.VISIBLE })
+                Glide.with(this).load(value.image).into(evolutions[index].also { it.visibility = View.VISIBLE })
             }
         }
     }
 
     private fun speachText() {
-        //while (description.text.isNullOrBlank()) {}
         val text =
             String.format(getString(R.string.speechText), pokemonName.text.toString(), description.text.toString())
         textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
     }
 
     override fun onDestroy() {
-        if (textToSpeech != null) {
-            textToSpeech.stop()
-            textToSpeech.shutdown()
-        }
+        textToSpeech.stop()
+        textToSpeech.shutdown()
         super.onDestroy()
     }
 

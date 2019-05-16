@@ -64,7 +64,7 @@ class PokedexActivity : AppCompatActivity(), PokedexActivityListener {
         fragmentOpen = false
     }
 
-    private fun goToPokemonDetail(id: Long) {
+    override fun goToPokemonDetail(id: Long) {
         supportFragmentManager
             .beginTransaction()
             .setCustomAnimations(

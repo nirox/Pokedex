@@ -1,10 +1,14 @@
 package com.mobgen.presentation.pokedex.pokemonDetail
 
+import com.mobgen.domain.model.Pokemon
 import com.mobgen.domain.model.PokemonDetails
 import com.mobgen.presentation.R
 import com.mobgen.presentation.ViewMapper
 
-class PokemonDetailViewMapper(private val typeViewMapper: TypeViewMapper) :
+class PokemonDetailViewMapper(
+    private val typeViewMapper: TypeViewMapper,
+    private val pokemonViewMapper: PokemonViewMapper
+) :
     ViewMapper<PokemonDetails, PokemonDetailViewModel.PokemonDetailBindView> {
     override fun map(value: PokemonDetails): PokemonDetailViewModel.PokemonDetailBindView {
         return PokemonDetailViewModel.PokemonDetailBindView(
@@ -32,7 +36,8 @@ class PokemonDetailViewMapper(private val typeViewMapper: TypeViewMapper) :
                 PokemonDetails.Type.Steel -> R.drawable.steel_background
                 else -> R.drawable.water_background
             },
-            value.evolutions.map { Pair(it.name, it.imageUrl) })
+            value.evolutions.map(pokemonViewMapper::map)
+        )
     }
 
     class TypeViewMapper : ViewMapper<PokemonDetails.Type, Pair<String, Int>> {
@@ -59,6 +64,11 @@ class PokemonDetailViewMapper(private val typeViewMapper: TypeViewMapper) :
                 else -> R.drawable.water
             }
         )
+    }
+
+    class PokemonViewMapper : ViewMapper<Pokemon, PokemonDetailViewModel.PokemonBindView> {
+        override fun map(value: Pokemon) =
+            PokemonDetailViewModel.PokemonBindView(value.id, value.name, value.imageUrl)
     }
 
 

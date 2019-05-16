@@ -15,6 +15,7 @@ val presentationModule = module {
     single { PokemonBindViewMapper() }
     viewModel { PokedexViewModel(get(), get()) }
     single { PokemonDetailViewMapper.TypeViewMapper() }
-    single { PokemonDetailViewMapper(get()) }
+    single { PokemonDetailViewMapper.PokemonViewMapper() }
+    single { PokemonDetailViewMapper(get(), get()) }
     viewModel { PokemonDetailViewModel(get(), get()) }
 }
