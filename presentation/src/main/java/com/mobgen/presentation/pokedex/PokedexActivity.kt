@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -65,17 +66,18 @@ class PokedexActivity : AppCompatActivity(), PokedexActivityListener {
     }
 
     override fun goToPokemonDetail(id: Long) {
-        supportFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(
+        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        supportFragmentManager.beginTransaction().apply {
+            setCustomAnimations(
                 android.R.anim.slide_in_left,
                 android.R.anim.slide_out_right,
                 android.R.anim.slide_in_left,
                 android.R.anim.slide_out_right
             )
-            .add(R.id.main, PokemonDetailFragment.newInstance(id))
-            .addToBackStack(null)
-            .commit()
+            replace(R.id.main, PokemonDetailFragment.newInstance(id))
+            addToBackStack(null)
+            commit()
+        }
     }
 
     private fun initListener() {
