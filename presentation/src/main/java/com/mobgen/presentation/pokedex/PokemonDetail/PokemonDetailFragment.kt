@@ -50,7 +50,7 @@ class PokemonDetailFragment : Fragment(), TextToSpeech.OnInitListener {
         super.onActivityCreated(savedInstanceState)
         context?.let {
             activityListener = activity as PokedexActivityListener
-            Glide.with(this).load(it.getDrawable(R.drawable.pokeball_gif)).into(load)
+            Glide.with(this).load(R.drawable.pokeball_gif).into(load)
         }
     }
 
