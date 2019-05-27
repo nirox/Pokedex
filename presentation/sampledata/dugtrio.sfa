@@ -1,0 +1,151 @@
+{
+  materials: [
+    {
+      name: 'BodyA00',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0051_00_BodyA1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Eye00',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0051_00_EyeA1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'BodyB',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0051_00_BodyB1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'Color',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/dugtrio.FBX',
+    name: 'dugtrio',
+    recenter: 'root',
+    scale: 0.3,
+  },
+  samplers: [
+    {
+      file: 'sampledata/Images/pm0051_00_EyeA1.png',
+      name: 'pm0051_00_EyeA1',
+      pipeline_name: 'Images\\pm0051_00_EyeA1.png',
+    },
+    {
+      file: 'sampledata/Images/pm0051_00_BodyB1.png',
+      name: 'pm0051_00_BodyB1',
+      pipeline_name: 'Images\\pm0051_00_BodyB1.png',
+    },
+    {
+      file: 'sampledata/Images/pm0051_00_BodyA1.png',
+      name: 'pm0051_00_BodyA1',
+      pipeline_name: 'Images\\pm0051_00_BodyA1.png',
+    },
+  ],
+  version: '0.54:2',
+}

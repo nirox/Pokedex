@@ -85,3 +85,75 @@ sceneform.asset('sampledata/pikachuF.FBX',
         'default',
         'sampledata/pikachuF.sfa',
         'src/main/res/raw/pikachu')
+
+
+sceneform.asset('sampledata/charmander.FBX',
+        'default',
+        'sampledata/charmander.sfa',
+        'src/main/res/raw/charmander')
+
+sceneform.asset('sampledata/eevee.FBX',
+        'default',
+        'sampledata/eevee.sfa',
+        'src/main/res/raw/eevee')
+
+sceneform.asset('sampledata/squirtle.FBX',
+        'default',
+        'sampledata/squirtle.sfa',
+        'src/main/res/raw/squirtle')
+
+sceneform.asset('sampledata/magikarp.FBX',
+        'default',
+        'sampledata/magikarp.sfa',
+        'src/main/res/raw/magikarp')
+
+sceneform.asset('sampledata/pichu.FBX',
+        'default',
+        'sampledata/pichu.sfa',
+        'src/main/res/raw/pichu')
+
+sceneform.asset('sampledata/cubone.FBX',
+        'default',
+        'sampledata/cubone.sfa',
+        'src/main/res/raw/cubone')
+
+sceneform.asset('sampledata/diglett.FBX',
+        'default',
+        'sampledata/diglett.sfa',
+        'src/main/res/raw/diglett')
+
+sceneform.asset('sampledata/dugtrio.FBX',
+        'default',
+        'sampledata/dugtrio.sfa',
+        'src/main/res/raw/dugtrio')
+
+sceneform.asset('sampledata/gloom_m.FBX',
+        'default',
+        'sampledata/gloom_m.sfa',
+        'src/main/res/raw/gloom_m')
+
+
+sceneform.asset('sampledata/slowbro.FBX',
+        'default',
+        'sampledata/slowbro.sfa',
+        'src/main/res/raw/slowbro')
+
+sceneform.asset('sampledata/jolteon.FBX',
+        'default',
+        'sampledata/jolteon.sfa',
+        'src/main/res/raw/jolteon')
+
+sceneform.asset('sampledata/porygon.FBX',
+        'default',
+        'sampledata/porygon.sfa',
+        'src/main/res/raw/porygon')
+
+sceneform.asset('sampledata/aerodactyl.FBX',
+        'default',
+        'sampledata/aerodactyl.sfa',
+        'src/main/res/raw/aerodactyl')
+
+sceneform.asset('sampledata/hooh.FBX',
+        'default',
+        'sampledata/hooh.sfa',
+        'src/main/res/raw/hooh')

@@ -133,6 +133,9 @@ class ArActivity : AppCompatActivity() {
                 )
             transformableNodeView.scaleController.maxScale = 1.21f
             transformableNodeView.scaleController.minScale = 1.2f
+            transformableNodeView.rotationController.isEnabled = false
+            transformableNodeView.translationController.isEnabled = false
+            transformableNodeView.scaleController.isEnabled = false
             transformableNodeView.localRotation = Quaternion.axisAngle(Vector3(1f, 0f, 0f), -90f)
             transformableNodeView.setParent(anchorNode)
             transformableNodeView.renderable = viewRenderable

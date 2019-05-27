@@ -1,0 +1,150 @@
+{
+  materials: [
+    {
+      name: 'Material #23',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0142_00_BodyA1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Material #24',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0142_00_Eye1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Material #25',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0142_00_BodyB1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/aerodactyl.FBX',
+    name: 'aerodactyl',
+    recenter: 'root',
+    scale: 0.2,
+  },
+  samplers: [
+    {
+      file: 'sampledata/images/pm0142_00_Eye1.png',
+      name: 'pm0142_00_Eye1',
+      pipeline_name: 'images\\pm0142_00_Eye1.png',
+    },
+    {
+      file: 'sampledata/images/pm0142_00_BodyB1.png',
+      name: 'pm0142_00_BodyB1',
+      pipeline_name: 'images\\pm0142_00_BodyB1.png',
+    },
+    {
+      file: 'sampledata/images/pm0142_00_BodyA1.png',
+      name: 'pm0142_00_BodyA1',
+      pipeline_name: 'images\\pm0142_00_BodyA1.png',
+    },
+  ],
+  version: '0.54:2',
+}

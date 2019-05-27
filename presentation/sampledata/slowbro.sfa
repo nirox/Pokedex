@@ -1,0 +1,193 @@
+{
+  materials: [
+    {
+      name: 'Material #34',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0080_00_BodyA1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Material #35',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0080_00_EyeA1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Material #36',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0080_00_BodyB1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Material #37',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0080_00_EyeB1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/slowbro.FBX',
+    name: 'slowbro',
+    recenter: 'root',
+    scale: 0.2,
+  },
+  samplers: [
+    {
+      file: 'sampledata/images/pm0080_00_EyeB1.png',
+      name: 'pm0080_00_EyeB1',
+      pipeline_name: 'images\\pm0080_00_EyeB1.png',
+    },
+    {
+      file: 'sampledata/images/pm0080_00_BodyB1.png',
+      name: 'pm0080_00_BodyB1',
+      pipeline_name: 'images\\pm0080_00_BodyB1.png',
+    },
+    {
+      file: 'sampledata/images/pm0080_00_EyeA1.png',
+      name: 'pm0080_00_EyeA1',
+      pipeline_name: 'images\\pm0080_00_EyeA1.png',
+    },
+    {
+      file: 'sampledata/images/pm0080_00_BodyA1.png',
+      name: 'pm0080_00_BodyA1',
+      pipeline_name: 'images\\pm0080_00_BodyA1.png',
+    },
+  ],
+  version: '0.54:2',
+}

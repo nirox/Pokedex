@@ -54,10 +54,6 @@ class PokemonDetailFragment : Fragment() {
             activityListener = activity as PokedexActivityListener
             Glide.with(this).load(R.drawable.pokeball_gif).into(load)
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
 
         viewModel.data.observe(this, Observer {
             it?.let { data ->
@@ -80,7 +76,9 @@ class PokemonDetailFragment : Fragment() {
         initListener()
         initView()
         viewModel.getPokemonById(id)
+
     }
+
 
     override fun onDestroy() {
         textToSpeech.stop()
@@ -90,7 +88,8 @@ class PokemonDetailFragment : Fragment() {
 
     private fun initView() {
         id = arguments?.getLong(ARG_ID) ?: -1L
-        textToSpeech = TextToSpeech(context, TextToSpeech.OnInitListener {}).apply { language = Locale.ENGLISH }
+        if (!::textToSpeech.isInitialized) textToSpeech =
+            TextToSpeech(context, TextToSpeech.OnInitListener {}).apply { language = Locale.ENGLISH }
         typesImage.add(pokemonType1Image)
         typesImage.add(pokemonType2Image)
         typesText.add(pokemonType1)

@@ -1,0 +1,108 @@
+{
+  materials: [
+    {
+      name: 'BodyA_00',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0044_00_Body1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Eye',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0044_00_Eye1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'Color',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/images/gloom_m.FBX',
+    name: 'gloom_m',
+    recenter: 'root',
+    scale: 0.52457799999999999,
+  },
+  samplers: [
+    {
+      file: 'sampledata/images/pm0044_00_Eye1.png',
+      name: 'pm0044_00_Eye1',
+      pipeline_name: 'Images\\pm0044_00_Eye1.png',
+    },
+    {
+      file: 'sampledata/images/pm0044_00_Body1.png',
+      name: 'pm0044_00_Body1',
+      pipeline_name: 'Images\\pm0044_00_Body1.png',
+    },
+  ],
+  version: '0.54:2',
+}

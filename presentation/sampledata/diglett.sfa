@@ -1,0 +1,108 @@
+{
+  materials: [
+    {
+      name: 'Body00',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0050_00_Body1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Eye',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0050_00_Eye1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'Color',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/diglett.FBX',
+    name: 'diglett',
+    recenter: 'root',
+    scale: 0.5,
+  },
+  samplers: [
+    {
+      file: 'sampledata/Images/pm0050_00_Eye1.png',
+      name: 'pm0050_00_Eye1',
+      pipeline_name: 'Images\\pm0050_00_Eye1.png',
+    },
+    {
+      file: 'sampledata/Images/pm0050_00_Body1.png',
+      name: 'pm0050_00_Body1',
+      pipeline_name: 'Images\\pm0050_00_Body1.png',
+    },
+  ],
+  version: '0.54:2',
+}

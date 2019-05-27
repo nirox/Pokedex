@@ -1,0 +1,107 @@
+{
+  materials: [
+    {
+      name: 'Material #114',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0137_00_Body1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Material #115',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'pm0137_00_Eye1',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/porygon.FBX',
+    name: 'porygon',
+    recenter: 'root',
+    scale: 0.3,
+  },
+  samplers: [
+    {
+      file: 'sampledata/images/pm0137_00_Eye1.png',
+      name: 'pm0137_00_Eye1',
+      pipeline_name: 'images\\pm0137_00_Eye1.png',
+    },
+    {
+      file: 'sampledata/images/pm0137_00_Body1.png',
+      name: 'pm0137_00_Body1',
+      pipeline_name: 'images\\pm0137_00_Body1.png',
+    },
+  ],
+  version: '0.54:2',
+}
