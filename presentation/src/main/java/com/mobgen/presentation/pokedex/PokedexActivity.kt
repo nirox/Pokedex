@@ -14,6 +14,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.mobgen.presentation.BaseViewModel
 import com.mobgen.presentation.R
+import com.mobgen.presentation.ar.ArActivity
 import com.mobgen.presentation.pokedex.pokemonDetail.PokedexActivityListener
 import com.mobgen.presentation.pokedex.pokemonDetail.PokemonDetailFragment
 import kotlinx.android.synthetic.main.activity_pokedex.*
@@ -78,6 +79,10 @@ class PokedexActivity : AppCompatActivity(), PokedexActivityListener {
             addToBackStack(null)
             commit()
         }
+    }
+
+    override fun goToPokemonAr(id: Long, mode: String) {
+        startActivity(ArActivity.newInstance(this, id, mode))
     }
 
     private fun initListener() {

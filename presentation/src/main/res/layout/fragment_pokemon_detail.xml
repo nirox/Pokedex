@@ -53,6 +53,30 @@
             android:textSize="24sp"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="@+id/pokemonImage"/>
+    <Button
+            android:background="@drawable/ic_pokeball_2d"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/pokemon2d"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/pokemonName"
+            app:layout_constraintTop_toTopOf="@+id/pokemonName"
+            app:layout_constraintBottom_toBottomOf="@id/pokemonName"
+            app:layout_constraintEnd_toEndOf="@id/pokemon3d"
+    />
+
+    <Button
+            android:background="@drawable/ic_pokeball_3d"
+            android:layout_width="30dp"
+            android:visibility="gone"
+            android:layout_height="30dp"
+            android:id="@+id/pokemon3d"
+            app:layout_constraintStart_toEndOf="@+id/pokemon2d"
+            app:layout_constraintTop_toTopOf="@+id/pokemonName"
+            app:layout_constraintBottom_toBottomOf="@id/pokemonName"
+            app:layout_constraintEnd_toEndOf="parent"
+    />
+
     <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"

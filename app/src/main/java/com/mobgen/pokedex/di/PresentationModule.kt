@@ -1,5 +1,7 @@
 package com.mobgen.pokedex.di
 
+import com.mobgen.presentation.ar.ArViewMapper
+import com.mobgen.presentation.ar.ArViewModel
 import com.mobgen.presentation.game.GameViewModel
 import com.mobgen.presentation.game.PokemonRandomViewMapper
 import com.mobgen.presentation.pokedex.PokedexViewModel
@@ -18,4 +20,7 @@ val presentationModule = module {
     single { PokemonDetailViewMapper.PokemonViewMapper() }
     single { PokemonDetailViewMapper(get(), get()) }
     viewModel { PokemonDetailViewModel(get(), get()) }
+    single { ArViewMapper.TypeViewMapper() }
+    single { ArViewMapper(get()) }
+    viewModel { ArViewModel(get(), get()) }
 }

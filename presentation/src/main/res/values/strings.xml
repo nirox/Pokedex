@@ -11,4 +11,5 @@
     <string name="round">/%d rounds</string>
     <string name="points">Score:\n%d</string>
     <string name="speechText">%s. %s</string>
+    <string name="openGLRequired">Sceneform requires OpenGL ES 3.0 or later</string>
 </resources>

@@ -1,16 +1,16 @@
-package com.mobgen.presentation.pokedex.pokemonDetail
+package com.mobgen.presentation.ar
 
 import com.mobgen.domain.subscribe
 import com.mobgen.domain.useCase.GetPokemonDetails
 import com.mobgen.presentation.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-class PokemonDetailViewModel(
+class ArViewModel(
     private val getPokemonDetails: GetPokemonDetails,
-    private val viewMapper: PokemonDetailViewMapper
+    private val viewMapper: ArViewMapper
 ) :
-    BaseViewModel<PokemonDetailViewModel.PokemonDetailViewData>() {
-    private var pokemonDetailsBind: PokemonDetailBindView? = null
+    BaseViewModel<ArViewModel.PokemonDetailViewData>() {
+    private var pokemonDetailsBind: ArBindView? = null
     private var mainViewData =
         PokemonDetailViewData(Status.LOADING, pokemonDetailsBind)
 
@@ -26,7 +26,7 @@ class PokemonDetailViewModel(
                     pokemonDetailsBind = viewMapper.map(pokemonDetails)
                     data.postValue(mainViewData.apply {
                         status = Status.SUCCESS
-                        pokemon = pokemonDetailsBind
+                        ar = pokemonDetailsBind
                     })
                 },
                 onError = {
@@ -40,21 +40,14 @@ class PokemonDetailViewModel(
 
     class PokemonDetailViewData(
         override var status: Status,
-        var pokemon: PokemonDetailBindView? = null
+        var ar: ArBindView? = null
     ) : Data
 
-    class PokemonDetailBindView(
+    class ArBindView(
         val name: String,
         val image: String,
+        val design3d: Int,
         val description: String,
-        val type: List<Pair<String, Int>>,
-        val detailBackground: Int,
-        val evolutions: List<PokemonBindView>
-    )
-
-    class PokemonBindView(
-        val id: Long,
-        val name: String,
-        val image: String
+        val type: List<Pair<String, Int>>
     )
 }

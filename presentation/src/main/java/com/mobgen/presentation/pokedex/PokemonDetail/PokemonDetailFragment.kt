@@ -1,7 +1,9 @@
 package com.mobgen.presentation.pokedex.pokemonDetail
 
 
+import android.app.ActivityManager
 import android.arch.lifecycle.Observer
+import android.content.Context
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.support.v4.app.Fragment
@@ -14,6 +16,8 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.mobgen.presentation.BaseViewModel
 import com.mobgen.presentation.R
+import com.mobgen.presentation.ar.ArActivity
+import com.mobgen.presentation.ar.Util3d
 import kotlinx.android.synthetic.main.fragment_pokemon_detail.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
@@ -32,6 +36,7 @@ class PokemonDetailFragment : Fragment() {
     companion object {
         const val TAG = "PokemonDetailFragment"
         private const val ARG_ID = "id"
+        private const val MIN_OPENGL_VERSION = 3.0
 
         fun newInstance(id: Long): PokemonDetailFragment =
             PokemonDetailFragment().apply { arguments = Bundle().apply { putLong(ARG_ID, id) } }
@@ -77,6 +82,12 @@ class PokemonDetailFragment : Fragment() {
         viewModel.getPokemonById(id)
     }
 
+    override fun onDestroy() {
+        textToSpeech.stop()
+        textToSpeech.shutdown()
+        super.onDestroy()
+    }
+
     private fun initView() {
         id = arguments?.getLong(ARG_ID) ?: -1L
         textToSpeech = TextToSpeech(context, TextToSpeech.OnInitListener {}).apply { language = Locale.ENGLISH }
@@ -118,7 +129,27 @@ class PokemonDetailFragment : Fragment() {
                 Glide.with(this).load(value.image).into(evolutions[index].also { it.visibility = View.VISIBLE })
             }
         }
+        pokemon2d.apply {
+            visibility = View.VISIBLE
+            setOnClickListener {
+                if (isSupportedDevice()) {
+                    textToSpeech.stop()
+                    activityListener.goToPokemonAr(this@PokemonDetailFragment.id, ArActivity.MODE_2D)
+                }
+            }
+        }
+        pokemon3d.apply {
+            if (Util3d.Pokemon.values().firstOrNull { value -> value.pName == pokemon?.name } != null) visibility =
+                View.VISIBLE
+            setOnClickListener {
+                if (isSupportedDevice()) {
+                    textToSpeech.stop()
+                    activityListener.goToPokemonAr(this@PokemonDetailFragment.id)
+                }
+            }
+        }
     }
+
 
     private fun speachText() {
         val text =
@@ -126,10 +157,16 @@ class PokemonDetailFragment : Fragment() {
         textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
     }
 
-    override fun onDestroy() {
-        textToSpeech.stop()
-        textToSpeech.shutdown()
-        super.onDestroy()
+    private fun isSupportedDevice(): Boolean {
+        val openGlVersionString = (context?.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager)
+            .deviceConfigurationInfo
+            .glEsVersion
+        if (java.lang.Double.parseDouble(openGlVersionString) < MIN_OPENGL_VERSION) {
+            Toast.makeText(context, getString(R.string.openGLRequired), Toast.LENGTH_LONG)
+                .show()
+            return false
+        }
+        return true
     }
 
 }

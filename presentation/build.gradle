@@ -5,6 +5,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.ar.sceneform.plugin'
 
 android {
     compileSdkVersion 28
@@ -67,6 +68,10 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     implementation "android.arch.lifecycle:viewmodel:$lifecycle_version"
 
+    //arcore
+    implementation "com.google.ar:core:$arcore_version"
+    implementation "com.google.ar.sceneform.ux:sceneform-ux:$arcore_version"
+
     implementation project(':domain')
 }
 repositories {
@@ -74,3 +79,9 @@ repositories {
     google()
     jcenter()
 }
+
+
+sceneform.asset('sampledata/pikachuF.FBX',
+        'default',
+        'sampledata/pikachuF.sfa',
+        'src/main/res/raw/pikachu')

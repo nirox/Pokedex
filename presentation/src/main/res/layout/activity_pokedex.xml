@@ -60,4 +60,5 @@
             android:src="@drawable/pokeball_gif"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
+
 </android.support.constraint.ConstraintLayout>
